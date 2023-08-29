@@ -34,16 +34,47 @@
             margin: 0;
             padding: 0;
         }
+
+.button{
+font-family: Roboto, sans-serif;
+font-weight: 0;
+font-size: 14px;
+color: #fff;
+background-color: #023e8a;
+padding: 10px 30px;
+border: solid #023e8a 2px;
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+border-radius: 50px;
+transition : 1000ms;
+transform: translateY(0);
+display: flex;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+}
+
+button:hover{
+
+transition : 1000ms;
+padding: 10px 50px;
+transform : translateY(-0px);
+background-color: #fff;
+color: #023e8a;
+border: solid 2px #023e8a;
+}
+
+</style>
+
+<!-- 2️⃣code HTML below -->
+
+<button class="btn">Jugar</button>
     </style>
 </head>
 <body>
     <div id="map-container">
-        <!-- Imagen flotante -->
         <img id="floating-image" src="/imagenes/logo.png" alt="logo" width="80" height="50" />
-        <!-- Mapa -->
         <div id="map"></div>
     </div>
-    <!-- Contenedor del mapa -->
     <div id="map"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -74,7 +105,7 @@
 
         var popup1 = L.popup({ offset: [0, -16] })
             .setLatLng([-27.125910463586177, -109.34864044189455])    
-            .setContent("<button class=\"btn\" onclick=\"alert('¡Botón clickeado!')\">Escanear</button>");
+            .setContent("<button class=\"btn\" onclick=\"alert('¡Botón clickeado!')\">Jugar</button>");
         var popup2 = L.popup({ offset: [0, -16] })
             .setLatLng([-42.470300483349995, -73.48772048950197])
             .setContent("<b>asdeef</b>");
