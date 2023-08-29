@@ -37,8 +37,6 @@
     </style>
 </head>
 <body>
-no funca 
-
     <div id="map-container">
         <!-- Imagen flotante -->
         <img id="floating-image" src="/imagenes/logo.png" alt="logo" width="80" height="50" />
@@ -74,7 +72,6 @@ no funca
         var marker1 = L.marker([-27.125910463586177, -109.34864044189455], { icon: customIcon1 }).addTo(map);
         var marker2 = L.marker([-42.470300483349995, -73.48772048950197], { icon: customIcon2 }).addTo(map); // Segundo marcador
 
-        // Agregar un popup con offset para que se muestre arriba del icono para cada marcador
         var popup1 = L.popup({ offset: [0, -16] })
             .setLatLng([-27.125910463586177, -109.34864044189455])    
             .setContent("<button class=\"btn\" onclick=\"alert('¡Botón clickeado!')\">Escanear</button>");
