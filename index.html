@@ -1,39 +1,98 @@
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css'>
-<style>
-  body {margin:0;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mapa con Varios Marcadores y Iconos Personalizados</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
 
-#map {
-	width: 100%;
-	height: 100%;
-}
-</style>
-<body translate="no">
-<div id="map"></div>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js'></script>
-      <script id="rendered-js" >
-var map;
-var ajaxRequest;
-var plotlist;
-var plotlayers = [];
+        /* Estilo para la imagen flotante */
+        #floating-image {
+            position: absolute;
+            top: 10px; /* Ajusta la distancia desde la parte superior */
+            left: 10px; /* Ajusta la distancia desde la izquierda */
+            z-index: 1000; /* Asegura que la imagen esté por encima del mapa */
+        }
+        /* Estilo para el contenedor del mapa */
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
 
-// Init Open Street Maps
-function initmap() {
-  // set up the map
-  map = new L.Map('map');
-  var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-  var osmAttrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
-  var osm = new L.TileLayer(osmUrl, { minZoom: 2, maxZoom: 19, attribution: osmAttrib });
-  map.setView(new L.LatLng(-0.37, -126.30), 30);
-  map.addLayer(osm);
+        /* Estilo para el cuerpo y el HTML para que ocupen todo el espacio disponible */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map-container">
+        <!-- Imagen flotante -->
+        <img id="floating-image" src="/imagenes/logo.png" alt="logo" width="80" height="50" />
+        <!-- Mapa -->
+        <div id="map"></div>
+    </div>
+    <!-- Contenedor del mapa -->
+    <div id="map"></div>
 
-  var marker = L.marker([0.420296, 9.964151]).addTo(map);
-  marker.bindPopup("<b>Botanischer Garten</b><br>is here").openPopup();
-}
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Inicializar el mapa
+        var map = L.map('map').setView([51.505, -0.09], 13);
 
-initmap();
-//# sourceURL=pen.js
+        // Agregar una capa de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Añadir marcadores con iconos personalizados
+        var customIcon1 = L.icon({
+            iconUrl: 'icons/custom-icon-1.png', // Ruta al icono personalizado para el marcador 1
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon2 = L.icon({
+            iconUrl: 'icons/custom-icon-2.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var marker1 = L.marker([51.5, -0.1], { icon: customIcon1 }).addTo(map);
+        var marker2 = L.marker([51.51, -0.1], { icon: customIcon2 }).addTo(map); // Segundo marcador
+
+        // Agregar un popup con offset para que se muestre arriba del icono para cada marcador
+        var popup1 = L.popup({ offset: [0, -16] })
+            .setLatLng([51.5, -0.1])
+            .setContent("<b>Marcadorassas 1</b>");
+
+        var popup2 = L.popup({ offset: [0, -16] })
+            .setLatLng([51.51, -0.1])
+            .setContent("<b>Marcador 2</b>");
+
+        // Abrir el popup al hacer clic en los marcadores
+        marker1.on('click', function () {
+            if (!map.hasLayer(popup1)) {
+                popup1.addTo(map);
+            } else {
+                map.closePopup(popup1);
+            }
+        });
+
+        marker2.on('click', function () {
+            if (!map.hasLayer(popup2)) {
+                popup2.addTo(map);
+            } else {
+                map.closePopup(popup2);
+            }
+        });
     </script>
-
-  
-  <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js"></script>
 </body>
+</html>
