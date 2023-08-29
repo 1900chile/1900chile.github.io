@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+    <title>Chile 1900</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Estilo para la imagen flotante */
+        #floating-image {
+            position: absolute;
+            top: 10px; /* Ajusta la distancia desde la parte superior */
+            right: 10px; /* Ajusta la distancia desde la derecha */
+            z-index: 1000; /* Asegura que la imagen esté por encima del mapa */
+        }
+        /* Estilo para el contenedor del mapa */
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* Estilo para el cuerpo y el HTML para que ocupen todo el espacio disponible */
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map-container">
+        <!-- Imagen flotante -->
+        <img id="floating-image" src="/imagenes/logo.png" alt="logo" width="80" height="50" />
+        <!-- Mapa -->
+        <div id="map"></div>
+    </div>
+    <!-- Contenedor del mapa -->
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Inicializar el mapa
+        var map = L.map('map').setView([51.505, -0.09], 2);
+
+        // Agregar una capa de OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Developed by TheMativious'
+        }).addTo(map);
+
+        // Añadir marcadores con iconos personalizados
+        var customIcon1 = L.icon({
+            iconUrl: 'imagenes/simple/moai.png', // Ruta al icono personalizado para el marcador 1
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon2 = L.icon({
+            iconUrl: 'icons/custom-icon-2.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var marker1 = L.marker([-27.125910463586177, -109.34864044189455], { icon: customIcon1 }).addTo(map);
+        var marker2 = L.marker([-42.470300483349995, -73.48772048950197], { icon: customIcon2 }).addTo(map); // Segundo marcador
+
+        // Agregar un popup con offset para que se muestre arriba del icono para cada marcador
+        var popup1 = L.popup({ offset: [0, -16] })
+            .setLatLng([-27.125910463586177, -109.34864044189455])
+            .setContent("<button class="btn">Escanear</button>");
+
+        var popup2 = L.popup({ offset: [0, -16] })
+            .setLatLng([-42.470300483349995, -73.48772048950197])
+            .setContent("<button class="btn">Escanear</button>");
+
+        // Abrir el popup al hacer clic en los marcadores
+        marker1.on('click', function () {
+            if (!map.hasLayer(popup1)) {
+                popup1.addTo(map);
+            } else {
+                map.closePopup(popup1);
+            }
+        });
+
+        marker2.on('click', function () {
+            if (!map.hasLayer(popup2)) {
+                popup2.addTo(map);
+            } else {
+                map.closePopup(popup2);
+            }
+        });
+    </script>
+</body>
+</html>
