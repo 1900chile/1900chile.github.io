@@ -102,7 +102,7 @@ border: solid 2px #023e8a;
 
         var popup1 = L.popup({ offset: [0, -16] })
             .setLatLng([-27.125910463586177, -109.34864044189455])    
-            .setContent("<h1>Moai</h1><br><b>Estas esculturas trataban de conservar la energía de los difuntos, el maná, para proteger a la tribu y cuidar sus cultivos y animales.</b><br><br><button class=\"btn\" onclick=\"moai()\">Jugar</button>");
+            .setContent("<h1>Moai</h1><hr><br><b>Estas esculturas trataban de conservar la energía de los difuntos, el maná, para proteger a la tribu y cuidar sus cultivos y animales.</b><br><br><button class=\"btn\" onclick=\"moai()\">Jugar</button>");
         var popup2 = L.popup({ offset: [0, -16] })
             .setLatLng([-42.470300483349995, -73.48772048950197])
             .setContent("<b>asdeef</b>");
@@ -126,15 +126,16 @@ border: solid 2px #023e8a;
 
 function moai() {
     Swal.fire({
-  title: '<strong>Moai</strong>',
+  title: '<strong>Moai</strong><br><hr>',
   width: '100%',
   height: '100%',
-  html:
+  HTML:
     '' +
-    '<iframe src="https://1900chile.github.io/moai.html" title="W3Schools Free Online Web Tutorials" height="500"></iframe>' +
+    '<iframe src="moai.html" title="W3Schools Free Online Web Tutorials" height="500"></iframe>' +
     '',
-  showCloseButton: true,
+  showCloseButton: false,
   showCancelButton: false,
+  confirmButtonText: 'Volver!'
 })
 }
     </script>
