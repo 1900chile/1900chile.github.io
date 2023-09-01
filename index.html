@@ -74,7 +74,7 @@ border: solid 2px #023e8a;
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         // Inicializar el mapa
-        var map = L.map('map').setView([51.505, -0.09], 2);
+        var map = L.map('map').setView([-35.88905007936092, -72.59765625000001], 3);
 
         // Agregar una capa de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -89,20 +89,64 @@ border: solid 2px #023e8a;
         });
 
         var customIcon2 = L.icon({
-            iconUrl: 'icons/custom-icon-2.png', // Ruta al icono personalizado para el marcador 2
+            iconUrl: 'imagenes/simple/achao.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon3 = L.icon({
+            iconUrl: 'imagenes/simple/araucaria.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon4 = L.icon({
+            iconUrl: 'imagenes/simple/paine.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon5 = L.icon({
+            iconUrl: 'imagenes/simple/astoreca.png', // Ruta al icono personalizado para el marcador 2
+            iconSize: [32, 32],
+            iconAnchor: [16, 16],
+        });
+
+        var customIcon6 = L.icon({
+            iconUrl: 'imagenes/simple/torreon.png', // Ruta al icono personalizado para el marcador 2
             iconSize: [32, 32],
             iconAnchor: [16, 16],
         });
 
         var marker1 = L.marker([-27.125910463586177, -109.34864044189455], { icon: customIcon1 }).addTo(map);
-        var marker2 = L.marker([-42.470300483349995, -73.48772048950197], { icon: customIcon2 }).addTo(map); // Segundo marcador
+        var marker2 = L.marker([-42.470300483349995, -73.48772048950197], { icon: customIcon2 }).addTo(map); 
+        var marker3 = L.marker([-38.742837445589046, -72.60040283203126], { icon: customIcon3 }).addTo(map); 
+        var marker4 = L.marker([-51.03221863403703, -72.99316406250001], { icon: customIcon4 }).addTo(map); 
+        var marker5 = L.marker([-20.218156898924597, -70.15181958675386], { icon: customIcon5 }).addTo(map); 
+        var marker5 = L.marker([-39.817848604749194, -73.24859619140626], { icon: customIcon6 }).addTo(map); 
 
         var popup1 = L.popup({ offset: [0, -16] })
             .setLatLng([-27.125910463586177, -109.34864044189455])    
             .setContent("<h1>Moai</h1><hr><br><b>Estas esculturas trataban de conservar la energía de los difuntos, el maná, para proteger a la tribu y cuidar sus cultivos y animales.</b><br><br><button class=\"btn\" onclick=\"moai()\">Jugar</button>");
         var popup2 = L.popup({ offset: [0, -16] })
             .setLatLng([-42.470300483349995, -73.48772048950197])
-            .setContent("<b>asdeef</b>");
+            .setContent("<h1>Iglesia de Santa María de Loreto</h1><hr><br><b>La iglesia de Santa María de Loreto se ubica en la plaza central de Achao. Fue declarada Patrimonio de la Humanidad por UNESCO el año 2000, y no sólo es la más antigua de Chiloé sino que una de las más antiguas de Chile, ya que el inicio de su construcción data del 1730.</b><br><br><button class=\"btn\" onclick=\"achao()\">Jugar</button>");
+            
+        var popup3 = L.popup({ offset: [0, -16] })
+            .setLatLng([-38.742837445589046, -72.60040283203126])
+            .setContent("<h1>Araucaria</h1><hr><br><b>Araucaria es un género de coníferas de la familia Araucariaceae. Hay 19 especies en el género, con una distribución repartida en el hemisferio sur; y cuyas semillas son comestibles.</b><br><br><button class=\"btn\" onclick=\"araucaria()\">Jugar</button>");
+
+        var popup4 = L.popup({ offset: [0, -16] })
+            .setLatLng([-38.742837445589046, -72.60040283203126])
+            .setContent("<h1>Torres del Paine</h1><hr><br><b>El Parque Nacional Torres del Paine, en la región de la Patagonia de Chile, es conocido por sus altas montañas, los témpanos de azul brillante que se aferran a los glaciares y las pampas doradas (praderas) que albergan fauna poco común, como los guanacos. Algunos de los sitios más icónicos son las 3 torres de granito que le dan nombre al parque y las cimas con forma de cuernos llamadas Cuernos del Paine.</b><br><br><button class=\"btn\" onclick=\"paine()\">Jugar</button>");
+
+        var popup5 = L.popup({ offset: [0, -16] })
+            .setLatLng([-20.218156898924597, -70.15181958675386])
+            .setContent("<h1>Palacio Astoreca</h1><hr><br><b>El Palacio Astoreca es un inmueble ubicado en el casco histórico de Iquique, Chile. Su construcción fue encargada por Juan Higinio Astoreca, empresario salitrero, en 1900 y fue terminada en 1901 De estilo georgiano, construida en pino oregón y ricamente amoblada, fue declarada monumento histórico nacional en 1994.</b><br><br><button class=\"btn\" onclick=\"astoreca()\">Jugar</button>");
+        
+        var popup6 = L.popup({ offset: [0, -16] })
+            .setLatLng([-39.817848604749194, -73.24859619140626])
+            .setContent("<h1><h1>Torreón el Canelo</h1><hr><br><b>Zona:sur El Torreón Los Canelos o Torreón de Cantarranas​ es un monumento histórico localizado en la ciudad de Valdivia, Región de Los Ríos, Chile.​</b><br><br><button class=\"btn\" onclick=\"torreon()\">Jugar</button>");
 
         // Abrir el popup al hacer clic en los marcadores
         marker1.on('click', function () {
@@ -120,6 +164,38 @@ border: solid 2px #023e8a;
                 map.closePopup(popup2);
             }
         });
+        
+        marker3.on('click', function () {
+            if (!map.hasLayer(popup3)) {
+                popup3.addTo(map);
+            } else {
+                map.closePopup(popup3);
+            }
+        });
+
+        marker4.on('click', function () {
+            if (!map.hasLayer(popup4)) {
+                popup4.addTo(map);
+            } else {
+                map.closePopup(popup4);
+            }
+        });
+
+        marker5.on('click', function () {
+            if (!map.hasLayer(popup5)) {
+                popup5.addTo(map);
+            } else {
+                map.closePopup(popup5);
+            }
+        });
+
+        marker6.on('click', function () {
+            if (!map.hasLayer(popup6)) {
+                popup6.addTo(map);
+            } else {
+                map.closePopup(popup6);
+            }
+        });
 
 function moai() {
     Swal.fire({
@@ -127,13 +203,89 @@ function moai() {
   width: '100%',
   showCloseButton: false,
   showCancelButton: false,
-  confirmButtonText: 'Volver!'
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
   html:
     '' +
-    '<iframe src="moai.html" height="500"></iframe> ' +
+    '<iframe src="moai.html" height="500"></iframe>' +
     '',
 })
 }
+function achao() {
+    Swal.fire({
+  title: '<strong>Iglesia de Santa María de Loreto</strong><br><hr>',
+  width: '100%',
+  showCloseButton: false,
+  showCancelButton: false,
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
+  html:
+    '' +
+    '<iframe src="achao.html" height="500"></iframe>' +
+    '',
+})
+}
+function araucaria() {
+    Swal.fire({
+  title: '<strong>Araucaria</strong><br><hr>',
+  width: '100%',
+  showCloseButton: false,
+  showCancelButton: false,
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
+  html:
+    '' +
+    '<iframe src="araucaria.html" height="500"></iframe>' +
+    '',
+})
+}
+
+function paine() {
+    Swal.fire({
+  title: '<strong>Torres del Paine</strong><br><hr>',
+  width: '100%',
+  showCloseButton: false,
+  showCancelButton: false,
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
+  html:
+    '' +
+    '<iframe src="paine.html" height="500"></iframe>' +
+    '',
+})
+}
+function astoreca() {
+    Swal.fire({
+  title: '<strong>Palacio Astoreca</strong><br><hr>',
+  width: '100%',
+  showCloseButton: false,
+  showCancelButton: false,
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
+  html:
+    '' +
+    '<iframe src="astoreca.html" height="500"></iframe>' +
+    '',
+})
+}
+function torreon() {
+    Swal.fire({
+  title: '<strong>Torreón el Canelo</strong><br><hr>',
+  width: '100%',
+  showCloseButton: false,
+  showCancelButton: false,
+  confirmButtonText: 'Volver!',
+  confirmButtonColor: '#023e8a',
+  html:
+    '' +
+    '<iframe src="torreon.html" height="500"></iframe>' +
+    '',
+})
+}
+ </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
     </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
